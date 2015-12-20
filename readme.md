@@ -17,10 +17,11 @@ The application shall be enhanced to include scheduler, blogging, and enhanced u
 Project Plan: <https://drive.google.com/open?id=0B4zszql1FGmYTzZyamFieUxzVG8>
 
 ## Demo
-<https://youtu.be/IIb97ME6dng>
+<https://youtu.be/oL2mNPe-Esc>
 
 ## Details for teaching team
-User:jill@harvard.edu/jamal@harvard.edu
+User:jill@harvard.edu / jamal@harvard.edu
+
 Password:helloworld
 
 ## Outside code
