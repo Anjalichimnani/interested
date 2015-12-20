@@ -1,0 +1,27 @@
+body {
+	margin : 1cm 8cm 0cm 8cm !important;
+}
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    width:100%;
+    max-height: 300px !important;
+  margin: auto;
+}
+
+td{
+    word-wrap:break-word
+}
+
+.flash_message {
+    width:62%;
+    text-align:center;
+    padding:5px;
+    position:fixed;
+    top:0;
+    left:8;
+	background-position: center;
+    background-color:yellow;
+    font-weight:bold;
+	color: black;
+}

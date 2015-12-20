@@ -25,12 +25,17 @@ class CreateEventsTable extends Migration
         # The rest of the fields...
         $table->string('name');
         $table->text('description');
+        $table->string('image_url');
         $table->string('link');
         $table->string('presenter');
         $table->date('date_on');
         $table->time('time_at');
         $table->text('venue');
         $table->decimal('amount');
+
+        //Connection to Users
+        $table->integer('user_id')->unsigned();
+        $table->foreign('user_id')->references('id')->on('users');
 
         # FYI: We're skipping the 'tags' field for now; more on that later.
 

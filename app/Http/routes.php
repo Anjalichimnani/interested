@@ -11,9 +11,60 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'EventController@getEvents');
+
+//Routes for Events
+//Route::get('/', 'EventController@getEvents');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/event/create', 'EventController@getCreateEvent');
+    Route::post('/event/create', 'EventController@postCreateEvent');
+
+    Route::get('/event/update/{id}', 'EventController@getUpdateEvent');
+    Route::post('/event/update', 'EventController@postUpdateEvent');
+
+    Route::get('/event/delete/{id}', 'EventController@getDeleteEvent');
+
+
+    Route::get('/organizers', 'EventController@getOrganizers');
+    Route::get('/users', 'UserController@getUsers');
+
+    Route::post('/interested','EventController@postInterested');
+    Route::get('/interests','EventController@getInterests');
 });
+//Routes for Authentication
+
+# Show login form
+Route::get('/login', 'Auth\AuthController@getLogin');
+
+# Process login form
+Route::post('/login', 'Auth\AuthController@postLogin');
+
+# Process logout
+Route::get('/logout', 'Auth\AuthController@getLogout');
+
+# Show registration form
+Route::get('/register', 'Auth\AuthController@getRegister');
+
+# Process registration form
+Route::post('/register', 'Auth\AuthController@postRegister');
+
+Route::get('/confirm-login-worked', function() {
+
+    # You may access the authenticated user via the Auth facade
+    $user = Auth::user();
+
+    if($user) {
+        echo 'You are logged in.';
+        dump($user->toArray());
+    } else {
+        echo 'You are not logged in.';
+    }
+
+    return;
+
+});
+
 
 Route::get('/practice',function () {
 

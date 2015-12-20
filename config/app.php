@@ -145,6 +145,8 @@ return [
         Interested\Providers\EventServiceProvider::class,
         Interested\Providers\RouteServiceProvider::class,
 
+        Interested\Providers\UserServiceProvider::class,
+
         /*
          * Custom Packages Service Providers
          */

@@ -23,6 +23,29 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
+    # Where should the user be redirected to if their login succeeds?
+    protected $redirectPath = '/';
+
+    # Where should the user be redirected to if their login fails?
+    protected $loginPath = '/login';
+
+    # Where should the user be redirected to after logging out?
+    protected $redirectAfterLogout = '/';
+
+
+    /**
+     * Log the user out of the application.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getLogout()
+    {
+        \Auth::logout();
+        \Session::flash('flash_message','You have been logged out.');
+        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
+    }
+
+
     /**
      * Create a new authentication controller instance.
      *
@@ -36,6 +59,7 @@ class AuthController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
+     * Added Custom Fields for Users Table
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
@@ -45,12 +69,17 @@ class AuthController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
+
+            'age' => 'required|numeric',
+            'address' => 'required',
+            'phone_no' => 'required',
         ]);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
+     * Added Custom Fields for Users Table
      * @param  array  $data
      * @return User
      */
@@ -60,6 +89,10 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+
+            'age' => $data['age'],
+            'address' => $data['address'],
+            'phone_no' => $data['phone_no'],
         ]);
     }
 }

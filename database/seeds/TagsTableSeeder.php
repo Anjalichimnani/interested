@@ -11,64 +11,13 @@ class TagsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tags')->insert([
-            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'name' => 'Health',
-        ]);
+        $tags = ['Health','Technology','Education','Social','Conference','Sports','Fun','Christmas','Support','Life'];
 
-        DB::table('tags')->insert([
-            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'name' => 'Technology',
-        ]);
+        foreach ($tags as $tag_name) {
+            $tag = new \Interested\Tag();
+            $tag->name = $tag_name;
+            $tag->save();
+        }
 
-        DB::table('tags')->insert([
-            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'name' => 'Educational',
-        ]);
-
-        DB::table('tags')->insert([
-            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'name' => 'Social',
-        ]);
-
-        DB::table('tags')->insert([
-            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'name' => 'Conference',
-        ]);
-
-        DB::table('tags')->insert([
-            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'name' => 'Sports',
-        ]);
-
-        DB::table('tags')->insert([
-            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'name' => 'Fun',
-        ]);
-
-        DB::table('tags')->insert([
-            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'name' => 'Christmas',
-        ]);
-
-        DB::table('tags')->insert([
-            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'name' => 'Support',
-        ]);
-
-        DB::table('tags')->insert([
-            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'name' => 'Life',
-        ]);
     }
 }

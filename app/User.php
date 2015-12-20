@@ -27,8 +27,9 @@ class User extends Model implements AuthenticatableContract,
      * The attributes that are mass assignable.
      *
      * @var array
+     * Added Custom fields for Users Table
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password','age','address','phone_no'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -36,4 +37,30 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function event() {
+        # Users created many Events
+        # Define a one-to-many relationship.
+        return $this->hasMany('\Interested\Event');
+    }
+
+    public function interested_events() {
+        # Users created many Events
+        # Define a one-to-many relationship.
+        return $this->belongsToMany('\Interested\Event')->withTimestamps();
+    }
+
+    public function getEventsForCheckboxes() {
+
+        $user_id = \Auth::user();
+        $events_of_users[] = $user_id->interested_events->toArray();
+
+        $eventsForCheckboxes = [];
+
+        foreach($events_of_users[0] as $event) {
+            $eventsForCheckboxes[$event['id']] = $event['id'];
+        }
+
+        return $eventsForCheckboxes;
+    }
 }
